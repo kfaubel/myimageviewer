@@ -17,8 +17,11 @@ class LoadButton extends React.Component {
     }
 
     handleClick() {
-        console.log("In handleClick()")
-        alert('A name was submitted: ' + this.props.sharedZipcode);
+        console.log("In LoadButton::handleClick()")
+        alert('A Zipcode was submitted: ' + this.props.sharedZipcode);
+
+        // Clear the field.  This is mostly to prove we can do it.
+        this.props.onChangeSharedZipcode("xxx");
         //event.preventDefault();
     }
 }

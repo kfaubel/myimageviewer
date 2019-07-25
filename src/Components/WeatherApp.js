@@ -8,27 +8,37 @@ class WeatherApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            sharedZipcode: '02558',
+            sharedZipcode: '02558',     // This state is shared among the subcomponents of this component.
         };
 
         this.onChangeSharedZipcode = this.onChangeSharedZipcode.bind(this);
     }
 
+    // This is called directly within subcomponents.  
+    // The function is assigned as a property to subcomponents.
     onChangeSharedZipcode(value) {
-        console.log("In onChangeSharedZipcode(): " + value); // + JSON.stringify(newZipcode, null, 4));
-        this.setState({ sharedZipcode: value });
+        console.log("In WeatherApp::onChangeSharedZipcode(): " + value); 
+        
+        this.setState({ sharedZipcode: value }); // This will trigger a render()
+
+        //console.log("Zip is: " + this.state.sharedZipcode);
+        // this.setState((state, props) => ({
+        //     sharedZipcode: value
+        // }));
+          
     }
 
+    // Called whenever the state changes.
     render() {
+        console.log("WeatherApp::this.render(): " + this.state.sharedZipcode);
         return (
             <div className="WeatherApp">
-                <div className="appHeader">Enter your Zip code and load the forecast for your area.
-            </div>
+                <div className="appHeader">Enter your Zip code and load the forecast for your area.</div>
 
                 <div className="controlBar">
                     <label className="zipcodeLabel">Zip Code:</label>
                     <ZipcodeInput sharedZipcode={this.state.sharedZipcode} onChangeSharedZipcode={this.onChangeSharedZipcode}/>
-                    <LoadButton   sharedZipcode={this.state.sharedZipcode}/>
+                    <LoadButton   sharedZipcode={this.state.sharedZipcode} onChangeSharedZipcode={this.onChangeSharedZipcode}/>
                 </div>
 
                 <WeatherView />
