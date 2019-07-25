@@ -1,0 +1,37 @@
+.WeatherApp {
+    width: 80%;
+    margin: 0px;
+    /*border: 2px solid rgb(26, 6, 117);*/
+}
+.appHeader {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: #FFFFFF;
+    background-color: #08ada5;
+    border-radius: 5px;
+    padding: 5px;
+}
+.appFooter {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: #FFFFFF;
+    background-color: #08ada5;
+    border-radius: 5px;
+    padding: 5px;
+}
+.zipcodeLabel {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 5px;
+    margin-left: 15px;
+}
+
+.controlBar{
+    background-color: #96b6f5;
+    color: #FFFFFF;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
