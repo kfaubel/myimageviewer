@@ -3,7 +3,7 @@ import axios from 'axios';
 import './WeatherApp.css';
 
 import ZipcodeInput from './ZipcodeInput';
-import LoadButton from './LoadButton';
+//import LoadButton from './LoadButton';
 import WeatherView from './WeatherView';
 
 const mapQuestKey = require('../mapquestkey.json');
@@ -11,36 +11,28 @@ const mapQuestKey = require('../mapquestkey.json');
 class WeatherApp extends React.Component {
     constructor(props) {
         super(props);
-        console.log("WeatherApp::contructor");
         this.state = {
-            sharedZipcode: '',     // This state is shared among the subcomponents of this component.
+            lat: "",
+            lon: "",
             title: ''
         };
 
-        this.onChangeSharedZipcode = this.onChangeSharedZipcode.bind(this);
-        this.updateImage = this.updateImage.bind(this);
+        this.onChangeZipcode = this.onChangeZipcode.bind(this);
     }
 
     // This is called directly within subcomponents.  
     // The function is assigned as a property to subcomponents.
-    onChangeSharedZipcode(value) {
-        this.setState({ 
-            sharedZipcode: value,
-        }); // This will trigger a render()  
-    }
+    async onChangeZipcode(zipCode) {
+        //console.log("Updating image" + zipCode + " - " + JSON.stringify(this.state, null, 4));
 
-    async updateImage() {
-        console.log("Updating image", JSON.stringify(this.state, null, 4));
-
-        let weatherXml = "";
-        let result = {};
         if (mapQuestKey.mapQuestKey !== undefined) {
-            const mapQuestUrl = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapQuestKey.mapQuestKey}&location=${this.state.sharedZipcode}`;
+            const mapQuestUrl = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapQuestKey.mapQuestKey}&location=${zipCode}`;
+            //console.log("URL: " + mapQuestUrl);
 
             await axios.get(mapQuestUrl)
                 .then((response) => {
                     // handle success
-                    console.log("updating state for lat/lon" + JSON.stringify(response.data.results[0], null, 4));
+                    //console.log("updating state for lat/lon" + JSON.stringify(response.data.results[0], null, 4));
                     this.setState({ 
                         lat: response.data.results[0].locations[0].latLng.lat,
                         lon: response.data.results[0].locations[0].latLng.lng,
@@ -49,8 +41,6 @@ class WeatherApp extends React.Component {
                     
                 })
                 .catch((error) => {
-                    // handle error
-                    // tslint:disable-next-line:no-console
                     console.log("Error getting lat/lon from zipcode: " + error);
                     return null;
                 });
@@ -62,31 +52,20 @@ class WeatherApp extends React.Component {
 
     // Called whenever the state changes.
     render() {
-        console.log("WeatherApp::this.render(): " + this.state.sharedZipcode);
+        console.log("WeatherApp::this.render(): " + JSON.stringify(this.state, null,4));
         return (
             <div className="WeatherApp">
                 <div className="appHeader">Enter your Zip code and load the forecast for your area.</div>
 
-                
-                    <div className="controlBar">
-                        <label className="zipcodeLabel">Zip Code:</label>
-                        <ZipcodeInput 
-                            sharedZipcode={this.state.sharedZipcode} 
-                            getSharedZipcode={this.getSharedZipcode} 
-                            onChangeSharedZipcode={this.onChangeSharedZipcode}
-                        />
-                        <LoadButton   
-                            sharedZipcode={this.state.sharedZipcode} 
-                            onChangeSharedZipcode={this.onChangeSharedZipcode}
-                            updateImage={this.updateImage}
-                        />
-                    </div>
-
-                    <WeatherView  
-                        lat={this.state.lat}
-                        lon={this.state.lon}
-                        title={this.state.title}
-                    />
+                <ZipcodeInput 
+                    onChangeZipcode={this.onChangeZipcode}
+                />
+               
+                <WeatherView  
+                    lat={this.state.lat}
+                    lon={this.state.lon}
+                    title={this.state.title}
+                />
                 
                 <div className="appFooter" id="status">Ready.</div>
             </div>

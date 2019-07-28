@@ -5,22 +5,35 @@ class ZipcodeInput extends React.Component {
     constructor(props) {
         super(props);
 
-        // This is the direct function for the low level onChange event on the input field.
-        this.handleChange = this.handleChange.bind(this);
+        // Call this when the submit button is pressed
+        this.submitFormHandler = this.submitFormHandler.bind(this);
     }
 
-    // This is the actual element onChange handler.  It will accept the value and propigate it
-    // up to the shared variable via the onChangeSharedZipfile method
-    handleChange(event) {
-        this.props.onChangeSharedZipcode(event.target.value);
+    submitFormHandler(event) {
+        // Prevent the page from reloading!
+        event.preventDefault();  
 
-        // This seems like a good idea but its actual value is unknown
-        event.preventDefault();        
+        this.props.onChangeZipcode(this.refs.zipcodeValue.value);        
     }
 
     render() {
         return (
-            <input className="zipcode" type="text" pattern="[0-9]{5}" value={this.props.sharedZipcode} onChange={this.handleChange}></input>
+            <div className="zipcodeControlBar">
+                <form onSubmit={this.submitFormHandler}>                      
+                    <label className="zipcodeLabel">Zip Code:</label>
+
+                    <input className="zipcodeInput" 
+                        type="text" 
+                        ref="zipcodeValue"                  // Access the value as this.refs.zipcodeValue.value
+                        pattern="[0-9]{5}" 
+                        defaultValue=""
+                    >
+                    </input>
+
+                    <button className="zipCodeLoadButton" type="submit" >Show</button>
+
+                </form>   
+            </div>
         );
     }
 }

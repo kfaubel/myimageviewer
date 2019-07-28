@@ -1,6 +1,29 @@
-.zipcode{
+.zipcodeInput{
     margin-top: 2px;
     margin-bottom: 2px;
     margin-right: 5px;
     margin-left: 5px;
+}
+
+.zipCodeLoadButton{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.zipcodeLabel {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 5px;
+    margin-left: 15px;
+}
+
+.zipcodeControlBar{
+    background-color: #96b6f5;
+    color: #FFFFFF;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-radius: 5px;
+    padding: 5px;
 }
