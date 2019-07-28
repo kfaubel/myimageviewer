@@ -3,7 +3,6 @@ import axios from 'axios';
 import './WeatherApp.css';
 
 import ZipcodeInput from './ZipcodeInput';
-//import LoadButton from './LoadButton';
 import WeatherView from './WeatherView';
 
 const mapQuestKey = require('../mapquestkey.json');
@@ -32,7 +31,6 @@ class WeatherApp extends React.Component {
             await axios.get(mapQuestUrl)
                 .then((response) => {
                     // handle success
-                    //console.log("updating state for lat/lon" + JSON.stringify(response.data.results[0], null, 4));
                     this.setState({ 
                         lat: response.data.results[0].locations[0].latLng.lat,
                         lon: response.data.results[0].locations[0].latLng.lng,
@@ -52,7 +50,6 @@ class WeatherApp extends React.Component {
 
     // Called whenever the state changes.
     render() {
-        console.log("WeatherApp::this.render(): " + JSON.stringify(this.state, null,4));
         return (
             <div className="WeatherApp">
                 <div className="appHeader">Enter your Zip code and load the forecast for your area.</div>

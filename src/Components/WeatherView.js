@@ -11,7 +11,7 @@ class WeatherView extends React.Component {
         
         return (
             <div className="WeatherView">
-                <img className="WeatherView-image" id="image" src={imageUrl} alt=""></img>
+                <img className="weatherViewImage" src={imageUrl} alt=""></img>
             </div>
         );
     }

@@ -24,9 +24,9 @@ class ZipcodeInput extends React.Component {
 
                     <input className="zipcodeInput" 
                         type="text" 
-                        ref="zipcodeValue"                  // Access the value as this.refs.zipcodeValue.value
-                        pattern="[0-9]{5}" 
-                        defaultValue=""
+                        ref="zipcodeValue"          // Access the value as this.refs.zipcodeValue.value
+                        pattern="[0-9]{5}"          // 5 digits
+                        defaultValue=""             // Since there is no onChange, we need this so React does not make it readonly
                     >
                     </input>
 
