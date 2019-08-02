@@ -1,5 +1,5 @@
-.WeatherApp {
-    width: 100%;
+.BaseballApp {
+    width: 80%;
     margin: 0px;
     /*border: 2px solid rgb(26, 6, 117);*/
 }
@@ -19,4 +19,3 @@
     border-radius: 5px;
     padding: 5px;
 }
-

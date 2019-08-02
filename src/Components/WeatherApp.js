@@ -22,7 +22,7 @@ class WeatherApp extends React.Component {
     // This is called directly within subcomponents.  
     // The function is assigned as a property to subcomponents.
     async onChangeZipcode(zipCode) {
-        //console.log("Updating image" + zipCode + " - " + JSON.stringify(this.state, null, 4));
+        console.log("Updating image" + zipCode + " - " + JSON.stringify(this.state, null, 4));
 
         if (mapQuestKey.mapQuestKey !== undefined) {
             const mapQuestUrl = `http://www.mapquestapi.com/geocoding/v1/address?key=${mapQuestKey.mapQuestKey}&location=${zipCode}`;
@@ -52,8 +52,6 @@ class WeatherApp extends React.Component {
     render() {
         return (
             <div className="WeatherApp">
-                <div className="appHeader">Enter your Zip code and load the forecast for your area.</div>
-
                 <ZipcodeInput 
                     onChangeZipcode={this.onChangeZipcode}
                 />
@@ -63,8 +61,6 @@ class WeatherApp extends React.Component {
                     lon={this.state.lon}
                     title={this.state.title}
                 />
-                
-                <div className="appFooter" id="status">Ready.</div>
             </div>
         );
     }

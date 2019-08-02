@@ -1,5 +1,8 @@
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 40px;
+}
+
+.dummy {
     width: 1000px;
 }

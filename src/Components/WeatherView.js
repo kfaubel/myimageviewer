@@ -7,6 +7,7 @@ class WeatherView extends React.Component {
         let imageUrl = "";
         if (this.props.lat !== "" && this.props.lon !== "") {
             imageUrl = `http://glimmerhub.com/weather/forecast/lat/${this.props.lat}/lon/${this.props.lon}/title/${this.props.title}`;
+            console.log("WeatherView: " + imageUrl);
         }
         
         return (
